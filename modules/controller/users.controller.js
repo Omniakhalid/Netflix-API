@@ -1,5 +1,7 @@
 const users = require("../model/users.model");
 const bcrypt = require("bcrypt");
+var jwt = require("jsonwebtoken");
+
 //GET ALL
 const getAllUsers = async (req, res) => {
   const allUsers = await users.find({});
@@ -60,8 +62,9 @@ const deleteUser = async (req, res) => {
 
 //SIGN-IN
 const signIn = async (req, res) => {
-  const { email, password } = req.params;
+  const { email, password } = req.body;
   const foundUser = await users.findOne({ email });
+
   if (!foundUser) {
     res.json({ error: "User notFound" });
   } else {
@@ -70,8 +73,10 @@ const signIn = async (req, res) => {
         res.json({ error: "error in hash" });
       } else {
         const matchedUser = await bcrypt.compare(password, foundUser.password);
-        if (match) {
-          res.json({ error: "Done" });
+        if (matchedUser) {
+          //Synchronous Sign with default (HMAC SHA256)
+          var token = jwt.sign({ id: foundUser._id }, "shhhhh");
+          res.json({ message: "Done with token", token });
         } else {
           res.json({ error: "invalid password" });
         }
