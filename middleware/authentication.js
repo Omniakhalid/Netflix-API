@@ -2,10 +2,10 @@ var jwt = require("jsonwebtoken");
 const users = require("../modules/model/users.model");
 
 module.exports = () => {
-  return (req, res) => {
+  return (req, res, next) => {
     //console.log(req.headers);
     const token = req.headers["authorization"].split(" ")[1];
-    console.log(token);
+    //console.log(token);
     if (!token || token === null || token === undefined) {
       res.json({ err: "invalid token" });
     }
@@ -19,9 +19,10 @@ module.exports = () => {
           res.json({ err: "invalid user" });
         }
         req.user = user;
-        console.log(user);
+        next();
+        //console.log(user);
       }
     });
-    res.end();
+    //res.end();
   };
 };

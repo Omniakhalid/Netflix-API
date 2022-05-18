@@ -16,8 +16,9 @@ app.post("/Netflix-API/addUser", addUser);
 app.put("/Netflix-API/updateUser/:id", updateUser);
 app.delete("/Netflix-API/deleteUser/:id", deleteUser);
 app.post("/Netflix-API/signIn", signIn);
+//test
 app.get("/home", authentication(), authorization(["user"]), (req, res) => {
-  //console.log(res);
-  res.json({ message: "Welcome" });
+  console.log(res);
+  res.json({ message: `welcome ${req.user.userName}` });
 });
 module.exports = app;
