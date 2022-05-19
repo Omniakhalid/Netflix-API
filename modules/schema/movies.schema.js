@@ -7,7 +7,12 @@ const moviesSchema =new mongoose.Schema({
     thumbnail: {type: String},
     video: {type: String},
     year: {type: Number},
-    duration: {type: String, default:"2 hours 15 mins"}
+    duration: { type: String, default: "2 hours 15 mins" },
+    catrogry: { type: String },
+     _id: {
+        type: mongoose.Types.ObjectId,
+        required: false
+    }
 })
 
 module.exports = moviesSchema

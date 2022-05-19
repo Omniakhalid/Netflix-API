@@ -3,8 +3,9 @@ const users = require("../modules/model/users.model");
 
 module.exports = () => {
   return (req, res, next) => {
-    //console.log(req.headers);
-    const token = req.headers["authorization"].split(" ")[1];
+    // const token = req.headers["authorization"].split(" ")[1];
+    const token = req.headers["authorization"];
+
     //console.log(token);
     if (!token || token === null || token === undefined) {
       res.json({ err: "invalid token" });
@@ -20,7 +21,7 @@ module.exports = () => {
         }
         req.user = user;
         next();
-        //console.log(user);
+        console.log(user);
       }
     });
     //res.end();

@@ -5,14 +5,14 @@ var jwt = require("jsonwebtoken");
 //GET ALL
 const getAllUsers = async (req, res) => {
   const allUsers = await users.find({});
-  res.json({ statusCode: 200, allUsers });
+  res.json({ statusCode: 200, data:allUsers });
 };
 
 //GET_BY_ID
 const getUserById = async (req, res) => {
   const _id = req.params.id;
   const user = await users.findById({ _id });
-  res.json({ statusCode: 200, user });
+  res.json({ statusCode: 200, data:user });
 };
 
 //SIGN-UP
