@@ -9,12 +9,18 @@ connection();
 
 const movieRoutes = require("./modules/routes/movie.route");
 const userRoutes = require("./modules/routes/user.route");
+const listRoutes = require("./modules/routes/list.route");
+
 const enableCors = require("./middleware/enableCors");
 
 //Enable Routing & nCors
 app.use(userRoutes,enableCors);
-app.use(movieRoutes,enableCors);
+app.use(movieRoutes, enableCors);
+app.use(listRoutes, enableCors);
 
+// app.use(userRoutes);
+// app.use(movieRoutes);
+// app.use(listRoutes);
 //#endregion
 
 

@@ -9,6 +9,7 @@ const getAllMovies = async (req, res) => {
 //GET_BY_ID
 const getMovieById = async (req, res) => {
   const _id = req.params.id;
+
   const movie = await movies.findById({ _id });
   res.json({ statusCode: 200, data:movie });
 };
