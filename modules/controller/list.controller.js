@@ -1,32 +1,32 @@
 const List = require("../model/list.model");
-const Movie = require("../model/movies.model");
-
+// const Movie = require("../model/movies.model");
+// const helper = require("../../utils/helper");
 //GET_ALL
 const getLists = async (req, res) => {
  const typeQuery = req.query.type;
  const genreQuery = req.query.genre;
   let list = [];
   try {
-    if (typeQuery) {
-      if (genreQuery) {
-        list = await List.aggregate([
-          { $match: { type: typeQuery, genre: genreQuery },
-          },
-        ]);
-      } else {
-        list = await List.aggregate([
-          { $match: { type: typeQuery } },
-        ]);
-      }
-    } else {
-      list = await List.aggregate([{ $sample: { size: 10 } }]);
-    }
+    // if (typeQuery) {
+    //   if (genreQuery) {
+    //     list = await List.find({}).populate("content");
+    //   } else {
+    //     list = await List.aggregate([
+    //       { $match: { type: typeQuery } },
+    //     ]);
+    //   }
+    // } else {
+    //   list = await List.aggregate([{ $sample: { size: 10 } }]);
+    // }
+    list = await List.find({}).populate("content");
     res.status(200).json(list);
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 };
+
 
 //CREATE
 const addList = async (req, res) => {

@@ -17,7 +17,6 @@ const enableCors = require("./middleware/enableCors");
 app.use(userRoutes,enableCors);
 app.use(movieRoutes, enableCors);
 app.use(listRoutes, enableCors);
-
 // app.use(userRoutes);
 // app.use(movieRoutes);
 // app.use(listRoutes);
