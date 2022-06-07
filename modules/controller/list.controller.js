@@ -7,20 +7,11 @@ const getLists = async (req, res) => {
  const genreQuery = req.query.genre;
   let list = [];
   try {
-    // if (typeQuery) {
-    //   if (genreQuery) {
-    //     list = await List.find({}).populate("content");
-    //   } else {
-    //     list = await List.aggregate([
-    //       { $match: { type: typeQuery } },
-    //     ]);
-    //   }
-    // } else {
-    //   list = await List.aggregate([{ $sample: { size: 10 } }]);
-    // }
-    list = await List.find({}).populate("content");
+    const searchObj = {};
+    if(typeQuery) searchObj['type'] = typeQuery;
+    if (genreQuery) searchObj['genre'] = genreQuery;
+    list = await List.find({...searchObj}).populate("content");
     res.status(200).json(list);
-
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -30,7 +21,7 @@ const getLists = async (req, res) => {
 
 //CREATE
 const addList = async (req, res) => {
-
+  console.log(req.body);
     const newList = new List(req.body);
     try {
       const savedList = await newList.save();
