@@ -10,7 +10,7 @@ connection();
 const movieRoutes = require("./modules/routes/movie.route");
 const userRoutes = require("./modules/routes/user.route");
 const listRoutes = require("./modules/routes/list.route");
-// const testRoutes = require("./modules/routes/test");
+const testRoutes = require("./modules/routes/test");
 
 const enableCors = require("./middleware/enableCors");
 const port = process.env.PORT || 3000
@@ -29,7 +29,7 @@ app.use(cors(corsOptions))
 app.use(userRoutes,cors(corsOptions));
 app.use(movieRoutes, cors(corsOptions));
 app.use(listRoutes, cors(corsOptions));
-// app.use(testRoutes,cors(corsOptions));
+app.use(testRoutes,cors(corsOptions));
 
 
 
